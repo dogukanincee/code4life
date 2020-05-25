@@ -23,6 +23,8 @@ However, there are some restrictions about the complex.
 * Each sample data file has a rank: 1, 2 or 3. The higher the rank, the more health points you will get from the medicine - but more molecules will be needed to produce the medicine.
 * A molecule can be one of five types: A, B, C, D or E.
 
+The following produce is about the contest from the Wood 2 to Wood 1 league.
+
 ## 2) Procedure
 
 To begin with the contest, we will need an ArrayBuffer library to import our project to create ArrayBuffers which wil hold our lists of robots and samples. 
