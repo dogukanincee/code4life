@@ -44,14 +44,11 @@ object Player extends App {
     // game loop
     while(true) {
         var sampleList = new ArrayBuffer[Sample]
-        var target1:String = null
         var myStorage = new ArrayBuffer[Int]
-        var myTarget:String = null
         var robotList = new ArrayBuffer[Robot]
         var moleculeArr = Array('A','B','C','D','E')
         for(i <- 0 until 2) {
             val Array(target, _eta, _score, _storageA, _storageB, _storageC, _storageD, _storageE, _expertiseA, _expertiseB, _expertiseC, _expertiseD, _expertiseE) = readLine split " "
-            target1 = target
             val eta = _eta.toInt
             val score = _score.toInt
             val storageA = _storageA.toInt
@@ -104,7 +101,7 @@ object Player extends App {
             //max health is initialized
             var maxHealth = 0
             //first item of the list of robots is selectec
-            var me= robotList(0)
+            var selectedRobot= robotList(0)
 
             /*
             * while there are samples in the list 
@@ -123,7 +120,7 @@ object Player extends App {
         * sample goes to diagnosis
         */
             if (bestSample.carriedBy != 0 ){
-                goToAndConnect("DIAGNOSIS",bestSample.sampleId,me.target)
+                goToAndConnect("DIAGNOSIS",bestSample.sampleId,selectedRobot.target)
             }
             
             /*
@@ -135,14 +132,14 @@ object Player extends App {
             else{
                 var neededMolecule:Char = ' '
                 for(i <- 0 until moleculeArr.length){
-                    if(me.storage(i) < bestSample.cost(i))
+                    if(selectedRobot.storage(i) < bestSample.cost(i))
                         neededMolecule = moleculeArr(i)
                 }
                 if (neededMolecule != ' ') {
-                    goToAndConnect1("MOLECULES",neededMolecule, me.target)
+                    goToAndConnect1("MOLECULES",neededMolecule, selectedRobot.target)
                 }
                 else{
-                    goToAndConnect("LABORATORY",bestSample.sampleId,me.target)
+                    goToAndConnect("LABORATORY",bestSample.sampleId,selectedRobot.target)
                 }
             }
     }
