@@ -25,6 +25,11 @@ However, there are some restrictions about the complex.
 
 ## 2) Procedure
 
+To begin with the contest, we will need an ArrayBuffer library to import our project to create ArrayBuffers which wil hold our lists of robots and samples. 
+```
+import scala.collection.mutable.ArrayBuffer
+```
+
 First of all, a variable called sampleList which will contain the list of samples will be created. 
 ```
  var sampleList = new ArrayBuffer[Sample]
@@ -43,6 +48,7 @@ Once the samples are being created and held in the sampleList, we will choose th
 To do this; all samples that are carried currently in the sample list are compared to each other by considerinf their healths. When we identify the sample with highest health, we simply assign bestSample to it which was declared as null before.
 ```
 var bestSample:Sample = null
+var maxHealth = 0
 for (sample <- sampleList){
     if((sample.health>maxHealth)&& sample.carriedBy!=1){
         bestSample=sample
@@ -52,6 +58,7 @@ for (sample <- sampleList){
 ```
 What we want to next is going to a diagnosis module and collect that sample if we carry a sample. The target specify the module that robot needs to go.
 ```
+var selectedRobot= robotList(0)
 if (bestSample.carriedBy != 0 ){
     goToAndConnect("DIAGNOSIS",bestSample.sampleId,selectedRobot.target)
 }
@@ -89,6 +96,14 @@ And a list of robots is also initialized.
 ```
 var robotList = new ArrayBuffer[Robot]
 ```
+
+Then they are created in every loop in our project and held in a list named robotList
+
+```
+var robot = new Robot(target, Array(storageA.toInt,storageB.toInt,storageC.toInt,storageD.toInt,storageE.toInt))
+robotList += robot
+```
+
 Then we check for all the molecules to find how many molecules are needed to produce the sample we have.
 
 ```
@@ -116,4 +131,11 @@ def goToAndConnect1(module:String,data:Char,position:String){
          println("GOTO " + module)
     }
 }               
+```
+Once we gathered the molecules we needed, the final part occurs. We transport those samples with their required molecules to create medicine into the laboratory module.
+
+```
+else{
+     goToAndConnect("LABORATORY",bestSample.sampleId,selectedRobot.target)
+}
 ```
