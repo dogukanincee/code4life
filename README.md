@@ -9,9 +9,9 @@ The challenge on the codingame is Roche's Code4Life Puzzle. Two robots work in a
 * In molecules module, required molecules are gathered to produce the medicine.
 * In laboratory module, robots will create medicine to increase their health points.
 
-Samples need some molecules which will be gathered from the molecules module. That is called cost. After they are gathered, in the laboratory, corresponding medicine will be produced. This cycle goes on until the max move. 
+Samples need some molecules which will be gathered from the molecules module. That is called cost. After they are collected, in the laboratory, corresponding medicine will be produced. This cycle goes on until the max move. 
 
-However, there are some restrictions about the complex.
+However, there are some restrictions on the complex.
 
 * Each player has one robot with the same starting position.
 * A robot can carry up to 3 sample data files and 10 molecules at the same time.
@@ -27,7 +27,7 @@ The following produce is about the contest from the Wood 2 to Wood 1 league.
 
 ## 2) Procedure
 
-To begin with the contest, we will need an ArrayBuffer library to import our project to create ArrayBuffers which wil hold our lists of robots and samples. 
+To begin with the contest, we will need an ArrayBuffer library to import our project to create ArrayBuffers which will hold our lists of robots and samples. 
 ```
 import scala.collection.mutable.ArrayBuffer
 ```
@@ -46,8 +46,8 @@ In the the for loop where the game constantly checks for the samples, samples ar
 var sample = new Sample(_sampleId.toInt,_carriedBy.toInt,_rank.toInt,expertiseGain.toInt,_health.toInt, Array(_costA.toInt,_costB.toInt,_costC.toInt,_costD.toInt,_costE.toInt))
             sampleList+=sample
 ```
-Once the samples are being created and held in the sampleList, we will choose the best Sample which has the hightest health, in our terms, which gives the maximum point to us.
-To do this; all samples that are carried currently in the sample list are compared to each other by considerinf their healths. When we identify the sample with highest health, we simply assign bestSample to it which was declared as null before.
+Once the samples are being created and held in the sampleList, we will choose the best Sample, which has the highest health, in our terms, which gives the maximum point to us.
+To do this; all samples that are carried currently in the sample list are compared to each other by considering their healths. When we identify the sample with the highest health, we simply assign bestSample to it, which was declared as null before.
 ```
 var bestSample:Sample = null
 var maxHealth = 0
@@ -65,7 +65,7 @@ if (bestSample.carriedBy != 0 ){
     goToAndConnect("DIAGNOSIS",bestSample.sampleId,selectedRobot.target)
 }
 ```            
-Then, where robot checks if it is in the desired module occurs in the following function. If target module is the same as the desired module, we connect it. Otherwise, it goes back the module where it was before.
+Then, where robot checks, if it is in the desired module occurs in the following function. If the target module is the same as the desired module, we connect it. Otherwise, it goes back to the module where it was before.
 
 ```
 def goToAndConnect(module:String,data:Int,position:String){
@@ -115,7 +115,7 @@ for(i <- 0 until moleculeArr.length){
 }
 ```
 
-Once we have our sample and we know the desired molecules for that sample, but we have not acquired those molecules yet, what we need to do is go to molecules module.
+Once we have our sample, and we know the desired molecules for that sample, but we have not acquired those molecules yet, what we need to do is go to molecules module.
 
 ```
 if (neededMolecule != ' ') {
@@ -123,7 +123,7 @@ if (neededMolecule != ' ') {
 }
 ```
                
-Unlike the first go to method, now our data is not sample, it is the molecule we need. Thus we create a new function that is almost identical to the first go to method. The only difference is, new one takes Char as a data input instead an integer.
+Unlike the first go-to method, now our data is not sample, it is the molecule we need. Thus we create a new function that is almost identical to the first go-to method. The only difference is, new one takes Char as a data input instead of an integer.
 
 ```
 def goToAndConnect1(module:String,data:Char,position:String){
