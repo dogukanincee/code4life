@@ -56,16 +56,5 @@ What we want to next is going to a diagnosis module and collect that sample if w
 ```
 if (bestSample.carriedBy != 0 ){
     goToAndConnect("DIAGNOSIS",bestSample.sampleId,me.target)
-}else{
-     var neededMolecule:Char = ' '
-     for(i <- 0 until moleculeArr.length){
-        if(me.storage(i) < bestSample.cost(i))
-        neededMolecule = moleculeArr(i)
-     }
-     if (neededMolecule != ' ') {
-        goToAndConnect1("MOLECULES",neededMolecule, me.target)
-     }else{
-           goToAndConnect("LABORATORY",bestSample.sampleId,me.target)
-      }
- }
+}
 ```            
