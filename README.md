@@ -52,9 +52,20 @@ for (sample <- sampleList){
     }
 }
 ```
-What we want to next is going to a diagnosis module and collect that sample if we do not have a carried sample.
+What we want to next is going to a diagnosis module and collect that sample if we carry a sample. The target specify the module that robot needs to go.
 ```
 if (bestSample.carriedBy != 0 ){
-    goToAndConnect("DIAGNOSIS",bestSample.sampleId,me.target)
+    goToAndConnect("DIAGNOSIS",bestSample.sampleId,selectedRobot.target)
 }
 ```            
+Then, where robot checks if it is in the desired module occurs in the following function. If target module is the same as the desired module, we connect it. Otherwise, it goes back the module where it was before.
+
+```
+def goToAndConnect(module:String,data:Int,position:String){
+        if(position==module){
+            println("CONNECT " + data)
+        }else{
+            println("GOTO " + module)
+        }
+    }
+```
