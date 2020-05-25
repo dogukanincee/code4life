@@ -98,4 +98,22 @@ for(i <- 0 until moleculeArr.length){
 }
 ```
 
+Once we have our sample and we know the desired molecules for that sample, but we have not acquired those molecules yet, what we need to do is go to molecules module.
 
+```
+if (neededMolecule != ' ') {
+   goToAndConnect1("MOLECULES",neededMolecule, selectedRobot.target)
+}
+```
+               
+Unlike the first go to method, now our data is not sample, it is the molecule we need. Thus we create a new function that is almost identical to the first go to method. The only difference is, new one takes Char as a data input instead an integer.
+
+```
+def goToAndConnect1(module:String,data:Char,position:String){
+    if(position==module){
+       println("CONNECT " + data)
+    }else{
+         println("GOTO " + module)
+    }
+}               
+```
