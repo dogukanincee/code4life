@@ -90,9 +90,12 @@ And a list of robots is also initialized.
 var robotList = new ArrayBuffer[Robot]
 ```
 Then we check for all the molecules to find how many molecules are needed to produce the sample we have.
+
 ```
 for(i <- 0 until moleculeArr.length){
    if(selectedRobot.storage(i) < bestSample.cost(i))
       neededMolecule = moleculeArr(i)
 }
 ```
+
+
