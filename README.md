@@ -24,9 +24,7 @@ However, there are some restrictions about the complex.
 * A molecule can be one of five types: A, B, C, D or E.
 
 ## 2) Procedure
-```
 
-```
 First of all, a variable called sampleList which will contain the list of samples will be created. 
 ```
  var sampleList = new ArrayBuffer[Sample]
@@ -68,4 +66,33 @@ def goToAndConnect(module:String,data:Int,position:String){
             println("GOTO " + module)
         }
     }
+```
+Afterwards, we need to find the desired molecule of our sample. Firstly we create a storage which stores all the molecules that the complex has. Fist we create a variable which will be our desired molecule.
+
+```
+var neededMolecule:Char = ' '
+```
+
+Then we will have an array representing the complex's molecules which are A, B, C, D, and E respectively.
+
+```
+ var moleculeArr = Array('A','B','C','D','E')
+```
+Then we create a robot and a list of robots to show the target of that robot and the storage it has.
+
+```
+class Robot(var target: String, var storage: Array[Int]){
+}
+```
+And a list of robots is also initialized.
+
+```
+var robotList = new ArrayBuffer[Robot]
+```
+Then we check for all the molecules to find how many molecules are needed to produce the sample we have.
+```
+for(i <- 0 until moleculeArr.length){
+   if(selectedRobot.storage(i) < bestSample.cost(i))
+      neededMolecule = moleculeArr(i)
+}
 ```
